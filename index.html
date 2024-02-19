@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="sub">submit</button>
+    <input id="inp" >
+    <p id="mess"></p>
+    </body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        const sub = document.getElementById("sub");
+        const inp = document.getElementById("inp");
+        const mess = document.getElementById("mess");
+
+        socket.on("show", (mee) => {
+            mess.innerHTML += mee + "<br>"; 
+        });
+        socket.on("check",(m)=>{
+            mess.innerHTML=m
+        })
+        sub.onclick = () => {
+            socket.emit("message", inp.value);
+            inp.value = ""; 
+        };
+    </script>
+</html>
