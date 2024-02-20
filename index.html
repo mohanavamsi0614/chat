@@ -6,26 +6,30 @@
     <title>Document</title>
 </head>
 <body>
+    
+    <input id="inp" placeholder="messa">
     <button id="sub">submit</button>
-    <input id="inp" >
+    <!-- <input id="name" placeholder="enter your name"> -->
     <p id="mess"></p>
     </body>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js" integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4" crossorigin="anonymous"></script>
     <script>
-        const socket = io();
-        const sub = document.getElementById("sub");
-        const inp = document.getElementById("inp");
-        const mess = document.getElementById("mess");
-
+        const socket = io()
+        let User=prompt("enter your name")
+        const sub = document.getElementById("sub")
+        const inp = document.getElementById("inp")
+        const mess = document.getElementById("mess")
         socket.on("show", (mee) => {
-            mess.innerHTML += mee + "<br>"; 
+            mess.innerHTML += `<p>${mee}</p>`
         });
         socket.on("check",(m)=>{
-            mess.innerHTML=m
+            console.log
+            mess.innerHTML=`<h2>${User}</h2><br>`
         })
         sub.onclick = () => {
-            socket.emit("message", inp.value);
-            inp.value = ""; 
-        };
+            socket.emit("message", `<h2>${User}</h2>${inp.value}`)
+            inp.value = ""
+        }
     </script>
 </html>
