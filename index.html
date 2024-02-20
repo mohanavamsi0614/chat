@@ -4,15 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat app</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        *{
+    padding: 0px;
+    margin: 0px;
+}
+.send{
+    display: flex;
+    background-color:black ;
+    width: 100%;
+    position: absolute;
+    bottom: 1px;
+    padding: 20px;
+}
+#inp{
+    width:90% ;
+    height: 30px;
+}
+#sub{
+    background-color: blue;
+    width: 10%;
+    color: white;
+    height: 30px;
+}
+    </style>
 </head>
 <body>
-    
+    <div class="send">
     <input id="inp" placeholder="messa">
     <button id="sub">submit</button>
+</div>
     <!-- <input id="name" placeholder="enter your name"> -->
     <p id="mess"></p>
     </body>
-    <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdn.socket.io/4.7.4/socket.io.min.js" integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4" crossorigin="anonymous"></script>
     <script>
         const socket = io()

@@ -1,0 +1,21 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.send{
+    display: flex;
+    background-color:black ;
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+}
+#inp{
+    width:90% ;
+    height: 30px;
+}
+#sub{
+    background-color: white;
+    width: 10%;
+    color: white;
+    height: 30px;
+}
