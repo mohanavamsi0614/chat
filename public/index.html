@@ -9,7 +9,9 @@
         *{
     padding: 0px;
     margin: 0px;
+    overflow: hidden;
 }
+
 .send{
     display: flex;
     background-color:black ;
@@ -24,19 +26,26 @@
 }
 #sub{
     background-color: blue;
-    width: 10%;
+    width: 20%;
+    border: none;
+    border-radius: 10px;
     color: white;
     height: 30px;
+    font-weight: 800;
 }
+
     </style>
 </head>
 <body>
     <div class="send">
     <input id="inp" placeholder="messa">
     <button id="sub">submit</button>
+    <input id="room"/>
+    <button id="om">om</button>
+    <button>Random </button>
 </div>
     <!-- <input id="name" placeholder="enter your name"> -->
-    <p id="mess"></p>
+    <div id="mess"></div>
     </body>
     <script src="https://cdn.socket.io/4.7.4/socket.io.min.js" integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4" crossorigin="anonymous"></script>
     <script>
@@ -45,11 +54,24 @@
         const sub = document.getElementById("sub")
         const inp = document.getElementById("inp")
         const mess = document.getElementById("mess")
-        socket.on("show", (mee) => {
-            mess.innerHTML += `<p>${mee}</p>`
+        socket.on("show", (mee,user) => {
+            const message=document.createElement("p")
+            message.id="message"
+            if (user==User){
+                message.style.backgroundColor="blue"
+                message.style.color="white"
+                message.style.marginLeft="90%"
+            }
+            else{
+                message.style.backgroundColor="red"
+            }
+            message.innerHTML=mee
+            mess.appendChild(message)
         });
+        document.getElementById("om").onclick=()=>{
+        socket.emit("route",document.getElementById("room").value)}
         sub.onclick = () => {
-            socket.emit("message", `<h2>${User}</h2>${inp.value}`)
+            socket.emit("message", `<h2>${User}</h2>${inp.value}`,document.getElementById("room").value,User)
             inp.value = ""
         }
     </script>
