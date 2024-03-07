@@ -40,9 +40,6 @@
     <div class="send">
     <input id="inp" placeholder="messa">
     <button id="sub">submit</button>
-    <input id="room"/>
-    <button id="om">om</button>
-    <button>Random </button>
 </div>
     <!-- <input id="name" placeholder="enter your name"> -->
     <div id="mess"></div>
@@ -54,9 +51,13 @@
         const sub = document.getElementById("sub")
         const inp = document.getElementById("inp")
         const mess = document.getElementById("mess")
+        socket.emit("route",localStorage.getItem("room"))
         socket.on("show", (mee,user) => {
             const message=document.createElement("p")
-            message.id="message"
+            message.style.marginBottom="20px"
+            message.style.padding="10px"
+            message.style.borderRadius="20px"
+            mes
             if (user==User){
                 message.style.backgroundColor="blue"
                 message.style.color="white"
@@ -68,10 +69,9 @@
             message.innerHTML=mee
             mess.appendChild(message)
         });
-        document.getElementById("om").onclick=()=>{
-        socket.emit("route",document.getElementById("room").value)}
+       
         sub.onclick = () => {
-            socket.emit("message", `<h2>${User}</h2>${inp.value}`,document.getElementById("room").value,User)
+            socket.emit("message", `<h2>${User}</h2>${inp.value}`,localStorage.getItem("room"),User)
             inp.value = ""
         }
     </script>
