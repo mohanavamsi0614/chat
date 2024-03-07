@@ -20,7 +20,7 @@ io.on("connection", (socket) => {
     });
     socket.on("message", (message,route,user) => {
         console.log("Received message:", message);
-        io.to(route).emit("show", message+" "+route,user);
+        io.to(route).emit("show", message+" ",user);
     });
 });
 
