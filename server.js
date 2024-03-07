@@ -8,7 +8,7 @@ const io = socket(server);
 app.get("/",(req,res)=>{
     res.sendFile(join(__dirname+"/public/maya.html"))
 })
-app.get("/chat",(req,res)=>{
+app.get("/chat/:room",(req,res)=>{
     // res.send("hi")
     res.sendFile(join(__dirname+"/public/index.html"))
 })
@@ -16,11 +16,11 @@ io.on("connection", (socket) => {
     console.log("A user connected");
     socket.on("route",(route)=>{
         socket.join(route);
-        // console.log("hey i got you");
+        console.log("hey i got you");
     });
     socket.on("message", (message,route,user) => {
         console.log("Received message:", message);
-        io.to(route).emit("show", message+" ",user);
+        io.to(route).emit("show", message+route,user);
     });
 });
 

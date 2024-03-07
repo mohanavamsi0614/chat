@@ -20,9 +20,8 @@
     submit.onclick=()=>{
         if(room.value){
     p.innerHTML="loadding wait .......!"
-    localStorage.setItem("room",room.value)
     setTimeout(()=>{
-        location.replace(window.location.href+"chat")
+        location.replace(window.location.href+`chat/${room.value}`)
     },3000)
 }
     }

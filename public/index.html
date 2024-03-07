@@ -51,7 +51,7 @@
         const sub = document.getElementById("sub")
         const inp = document.getElementById("inp")
         const mess = document.getElementById("mess")
-        socket.emit("route",localStorage.getItem("room"))
+        socket.emit("route",Number(location.pathname.split("/")[2]))
         socket.on("show", (mee,user) => {
             const message=document.createElement("p")
             message.style.marginBottom="20px"
@@ -70,7 +70,7 @@
         });
        
         sub.onclick = () => {
-            socket.emit("message", `<h2>${User}</h2>${inp.value}`,localStorage.getItem("room"),User)
+            socket.emit("message", `<h2>${User}</h2>${inp.value}`,Number(location.pathname.split("/")[2]),User)
             inp.value = ""
         }
     </script>
