@@ -8,6 +8,7 @@
     width: 100%;
     position: absolute;
     bottom: 10px;
+    background-color: rgb(93, 93, 194);
 }
 #inp{
     width:90% ;

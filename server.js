@@ -9,7 +9,6 @@ app.get("/",(req,res)=>{
     res.sendFile(join(__dirname+"/public/maya.html"))
 })
 app.get("/chat/:room",(req,res)=>{
-    // res.send("hi")
     res.sendFile(join(__dirname+"/public/index.html"))
 })
 io.on("connection", (socket) => {
@@ -20,7 +19,7 @@ io.on("connection", (socket) => {
     });
     socket.on("message", (message,route,user) => {
         console.log("Received message:", message);
-        io.to(route).emit("show", message+route,user);
+        io.to(route).emit("show", message,user);
     });
 });
 
